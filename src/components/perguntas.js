@@ -64,7 +64,9 @@ function Pergunta(props){
 
                 <div className='container-botoes'>
                     <button className='c3' onClick={() => {
-                            props.setConcluidas(num += 1)
+                            if(num != 8){
+                                props.setConcluidas(num += 1)
+                            }
                             setCard1("")
                             setCard3("escondido")
 
@@ -72,14 +74,18 @@ function Pergunta(props){
                     }}>Não lembrei</button>
 
                     <button className='c2' onClick={() =>{
-                        props.setConcluidas(num += 1)
+                        if(num != 8){
+                            props.setConcluidas(num += 1)
+                        }
                         setCard1("")
                         setCard3("escondido")
                     }}>Quase não lembrei</button>
 
                     <button className='c1' onClick={() =>{
+                        if(num != 8){
+                            props.setConcluidas(num += 1)
+                        }
                         green = true
-                        props.setConcluidas(num += 1)
                         setCard1("")
                         setCard3("escondido")
                     }}>Zap!</button>
