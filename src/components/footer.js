@@ -1,14 +1,11 @@
 import { cards } from "./perguntas"
-import { concluidas } from "./perguntas";
+import { useState } from "react";
 
 
-export default function FooterConcluido(){
-    const [concluida, letConcluida] = useState(concluidas);
-
-
+export default function FooterConcluido({concluidas}){
     return(
         <div className="footer">
-            {concluida}/{cards.length} concluidos
+            {concluidas}/{cards.length} concluidos
         </div>
     )
 }

@@ -60,7 +60,10 @@
   VERMELHO = "#FF3030"
   CINZA = "#333333" 
 */
-
+.container-botoes{
+  display: flex;
+  justify-content: space-between;
+}
 .container-botoes > button {
   width: 90px;
   font-family: 'Recursive';
@@ -68,15 +71,27 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #FFFFFF;
-  background: blue;
+
+  border: 1px solid;
+
   border-radius: 5px;
-  border: 1px solid blue;
   padding:5px;
+}
+.c1{
+  background: #2FBE34;
+  border-color: #2FBE34;
+}
+.c2{
+  background: #FF922E;
+  border-color: #FF922E;
+}
+.c3{
+  background: #FF3030;
+  border-color: #FF3030;
 }
 
 .pergunta-fechada {
@@ -125,4 +140,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+.escondido{
+  display: none;
 }
