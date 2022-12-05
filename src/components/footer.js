@@ -1,6 +1,5 @@
+import React from "react"
 import { cards } from "./perguntas"
-import { useState } from "react";
-
 
 export default function FooterConcluido({concluidas}){
     return(

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import seta from '../assets/img/seta_play.png'
 import setaRotacional from '../assets/img/seta_virar.png'
-import { PerguntaAberta, PerguntaFechada, ContainerBotoes, ButtonC3, ButtonC1, ButtonC2 } from '../assets/css/style';
+
 
 
 export const cards = [
@@ -14,61 +14,94 @@ export const cards = [
 	{ number: '7', question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
 	{ number: '8', question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
 ]
+let concluidas = 0;
 
 // functions
 export default function Perguntas({concluidas, setConcluidas}){
     return(
-        cards.map(c => <Pergunta numero={c.number} question={c.question} answer={c.answer} concluidas={concluidas}  setConcluidas={setConcluidas}/>)
+        cards.map(c => <Pergunta pergunta={c.number} question={c.question} answer={c.answer} valor={concluidas} setConcluidas={setConcluidas}/>)
     )
 }
 
+
 function Pergunta(props){
-    let number = props.concluidas
-
-    let [card0, setCard0] = useState("")
-    let [card1, setCard1] = useState("escondido")
+    let [card1, setCard1] = useState("")
     let [card2, setCard2] = useState("escondido")
+    let [card3, setCard3] = useState("escondido")
 
-    function updateText(){
-        props.setConcluidas(number += 1)
+    let green = false;
+    let red = false;
 
-        setCard1("escondido")
-        setCard2("escondido")
-    }
-    
+    let num = props.valor
+
     return(
-        <div className='perguntas'>
-            <PerguntaFechada>
-                <p>Pergunta {props.numero}</p>
+        <div className='pergunta'>
+            <div className={`pergunta-fechada ${card1}`}>
+                <p>Pergunta {props.pergunta}</p>
 
-                <img src={seta} onClick={() => {
-                        setCard1("");
-                        setCard0("escondido")
-                    }}
-                    />
-            </PerguntaFechada>
-
-            <PerguntaAberta className={card1}>
-            {props.question}
-
-                <img img src={setaRotacional} onClick={
-                    () => {
+                <img src={seta} onClick={
+                    () =>
+                    {
                         setCard1("escondido")
                         setCard2("")
                     }
                 }/>
-            </PerguntaAberta>
+            </div> 
+            <div className={`pergunta-aberta ${card2}`}>
+            {props.question}
 
-            <PerguntaAberta className={card2}>
+            <img src={setaRotacional} onClick={
+                () =>
+                {
+                    setCard2("escondido")
+                    setCard3("")
+                }
+            } />
+            </div>
+
+            <div className={`pergunta-aberta ${card3}`}>
                 {props.answer}
 
-                <ContainerBotoes>
-                    <ButtonC3 onClick={updateText}>Não lembrei</ButtonC3>
-                    <ButtonC2 onClick={updateText}>Quase não lembrei</ButtonC2>
-                    <ButtonC1 onClick={updateText}>Zap!</ButtonC1>
-                </ContainerBotoes> 
-            </PerguntaAberta>
+                <div className='container-botoes'>
+                    <button className='c3' onClick={() => {
+                            props.setConcluidas(num += 1)
+                            setCard1("")
+                            setCard3("escondido")
+
+                            red = true;
+                    }}>Não lembrei</button>
+
+                    <button className='c2' onClick={() =>{
+                        props.setConcluidas(num += 1)
+                        setCard1("")
+                        setCard3("escondido")
+                    }}>Quase não lembrei</button>
+
+                    <button className='c1' onClick={() =>{
+                        green = true
+                        props.setConcluidas(num += 1)
+                        setCard1("")
+                        setCard3("escondido")
+                    }}>Zap!</button>
+                </div>
+                
+                 
+                
+            </div>
         </div>
     )
 }
 
+function PerguntaAberta(props){
+    return(   
+    <div>
+
+    </div>
+    )
+}
+
+function updateText(){
+    return(
+        concluidas += 1
+    )
+}
